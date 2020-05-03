@@ -1,0 +1,57 @@
+async function startProgram() {
+
+  // while (true) {
+	await doTask1();
+  // }
+	exitProgram();
+}
+
+async function doTask2() {
+	//Jump off the stairs
+	var heading = 0, speed = 255, duration = 7;
+
+	
+	await setMainLed(getRandomColor());
+	
+	//await rawMotor(255, 255, 5);
+	
+}
+
+
+
+
+async function doTask1() {
+	var heading = 0, speed = 100, duration = 3;
+
+	
+	await scrollMatrixText('Hello Kid!', { r: 244, g: 0, b: 0 }, 20, true);
+	
+	await setMainLed({ r: 253, g: 159, b: 255 });
+	await rollRobot(heading, speed, duration);
+	await rollRobot(heading + 90, speed, duration);
+	await rollRobot(heading + 180, speed, duration);
+	await rollRobot(heading + 270, speed, duration);
+}
+
+async function turnRobot(degrees, duration, doResetAim) {
+	await spin(degrees, duration);
+	
+	if (doResetAim) {
+		resetAim();
+	}
+}
+
+async function rollRobot(heading, speed, duration, rawMotorDuration=2) {
+	await calibrateCompass();
+	await roll(heading, speed / 2, duration / 2);
+	await roll(heading, speed * 1.6, duration / 2);
+	
+	//await rawMotor(255, 255, 2)
+	await delay(3);
+}
+
+
+
+
+
+
